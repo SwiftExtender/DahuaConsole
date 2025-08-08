@@ -148,6 +148,10 @@ class DebugConsole(Servers):
                 'cmd': 'self.dh.dh_test(msg)',
                 'help': 'TEST function (-h for params)',
             },
+            'usermgr': {
+                'cmd': 'self.dh.user_manager(msg)',
+                'help': 'User management (-h for params)',
+            },
         }
 
         dh_data = None
@@ -220,7 +224,8 @@ class DebugConsole(Servers):
         while True:
             try:
                 self.prompt()
-                msg = sys.stdin.readline().strip().decode('ascii')
+                # Python 3: readline() returns str, no need to decode
+                msg = sys.stdin.readline().strip()
                 if not self.dh or not self.dh.remote.connected():
                     log.failure('No available instance')
                     return False

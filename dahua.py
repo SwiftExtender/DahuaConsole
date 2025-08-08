@@ -2619,3 +2619,42 @@ class DahuaFunctions(Network):
 
     def dh_test(self, msg):
         return
+
+    def user_manager(self, msg):
+        """User management: only list users and show capabilities"""
+        cmd = msg.split()
+
+        usage = {
+            "list": "(list all users)",
+            "caps": "(get user management capabilities)",
+        }
+
+        if len(cmd) == 1 or cmd[1] == '-h':
+            log.info('{}'.format(help_all(msg=msg, usage=usage)))
+            return True
+
+        if cmd[1] == "list":
+            query_args = {
+                "method": "userManager.getUserInfoAll",
+                "params": {}
+            }
+        elif cmd[1] == "caps":
+            query_args = {
+                "method": "userManager.getCaps",
+                "params": {}
+            }
+        else:
+            log.info('{}'.format(help_all(msg=msg, usage=usage)))
+            return False
+
+        dh_data = self.send_call(query_args, errorcodes=True)
+        if not dh_data:
+            log.failure("Failed to execute user management command")
+            return False
+
+        if dh_data.get('result'):
+            print(json.dumps(dh_data, indent=4))
+            return True
+        else:
+            log.failure(f"Command '{cmd[1]}' failed: {dh_data.get('error', 'Unknown error')}")
+            return False
