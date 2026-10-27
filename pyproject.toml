@@ -1,0 +1,23 @@
+[project]                                                                                                                              
+name = "dahuaconsole-master"                                                                                                           
+version = "0.1.0"                                                                                                                      
+description = ""                                                                                                                       
+authors = [                                                                                                                            
+    {name = "Your Name",email = "you@example.com"}                                                                                     
+]                                                                                                                                      
+readme = "README.md"                                                                                                                   
+requires-python = ">=3.14"                                                                                                             
+dependencies = [                                                                                                                       
+    "pwn (>=1.0,<2.0)",                                                                                                                
+    "pycryptodome (==3.9.7)",                                                                                                          
+    "tzlocal (==2.1)",                                                                                                                 
+    "ndjson (==0.3.1)",                                                                                                                
+    "pwntools (==4.3.1)",                                                                                                              
+    "pyopenssl (==19.1.0)",                                                                                                            
+    "requests (==2.20.0)"                                                                                                              
+]                                                                                                                                      
+                                                                                                                                       
+                                                                                                                                       
+[build-system]                                                                                                                         
+requires = ["poetry-core>=2.0.0,<3.0.0"]                                                                                               
+build-backend = "poetry.core.masonry.api"                                                                                              
